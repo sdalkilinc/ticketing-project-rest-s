@@ -63,7 +63,10 @@ public class TaskController {
         return ResponseEntity.ok(new ResponseWrapper("Task is successfully updated", HttpStatus.OK));
     }
 
-    @PutMapping
-    public ResponseEntity<ResponseWrapper> employeeArchivedTasks(){}
+    @GetMapping("/employee/archieve")
+    public ResponseEntity<ResponseWrapper> employeeArchivedTasks(){
+        List<TaskDTO> taskDTOList = taskService.listAllTasksByStatus(Status.COMPLETE);
+        return ResponseEntity.ok(new ResponseWrapper("Tasks are successfully retrieved", taskDTOList, HttpStatus.OK));
+    }
 
 }
